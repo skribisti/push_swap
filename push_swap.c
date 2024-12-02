@@ -6,18 +6,32 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/02 13:50:09 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:54:14 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	push_swap()
+int	stack_len(t_stack *a)
 {
-	stack			a; // Init of stacks
-	stack			b;
+	int	cpt;
+
+	cpt = 0;
+	while (a)
+	{
+		a = a->next;
+		cpt++;
+	}
+	return (a);
+}
+
+int	push_swap(void)
+{
+	t_stack			a; // Init of stacks
+	t_stack			b;
 	long int		*arg;
-	int				len_a
+	int				len_a;
+	int				i;
 
 	a = NULL;
 	b = NULL;
@@ -25,6 +39,7 @@ int	push_swap()
 		return(0); // Error
 	if () // String input, call split
 		;
+	i = 0;
 	while (arg[i]) // Add nodes to a
 	{
 		if (arg[i]) // Check int overflow, syntax errs, dups, etc..
@@ -33,7 +48,7 @@ int	push_swap()
 			; // Check if arg[i] is long int, else convert string to long int
 		// Append nodes to a
 	}
-	len_a = stack_len(a);
+	len_a = stack_len(&a);
 	if (!ft_is_sorted(a))
 	{
 		if (len_a == 2)
