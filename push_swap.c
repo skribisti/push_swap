@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/02 16:54:14 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/04 09:58:54 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,29 @@ int	stack_len(t_stack *a)
 
 int	push_swap(void)
 {
-	t_stack			a; // Init of stacks
-	t_stack			b;
-	long int		*arg;
-	int				len_a;
-	int				i;
+}
+
+int	main(int ac, char **av)
+{
+	t_stack_node	*a; // Init of stacks
+	t_stack_node	*b;
 
 	a = NULL;
 	b = NULL;
-	if () // Input errors
-		return(0); // Error
-	if () // String input, call split
-		;
-	i = 0;
-	while (arg[i]) // Add nodes to a
+	if (ac == 1 || (ac == 2 && !av[1][0])) // Input errors
+		return(1); // Error
+	if (ac == 2) // String input, call split
+		av = split(av[1], ' ');
+	init_stack(&a, av + 1);
+	if (!stack_sorted(a))
 	{
-		if (arg[i]) // Check int overflow, syntax errs, dups, etc..
-			return (free(a), NULL);
-		if (arg[i] >= -2147483647 && arg[i] <= 2147483647)
-			; // Check if arg[i] is long int, else convert string to long int
-		// Append nodes to a
+		if (stack_len(a) == 2)
+			sa(&a, 0);
+		if (stack_len(a) == 3)
+			sort_three(&a);;
+		if (stack_len(a) > 3)
+			sort_stacks(&a, &b);
 	}
-	len_a = stack_len(&a);
-	if (!ft_is_sorted(a))
-	{
-		if (len_a == 2)
-			; //swap the 2 numbers
-		if (len_a == 3)
-			; // sort three algo
-		if (len_a > 3)
-			; // Turk algo
-	}
-	// clean up stack
-	return (len_a);
+	free_stack(&a);
+	return (0);
 }
