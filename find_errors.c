@@ -1,32 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill.c                                          :+:      :+:    :+:   */
+/*   find_errors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/11 19:13:02 by norabino         ###   ########.fr       */
+/*   Created: 2024/12/11 18:52:36 by norabino          #+#    #+#             */
+/*   Updated: 2024/12/11 19:07:13 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_fill(t_stack *a, char *av)
+int	only_digits(char **av)
 {
-	int				len_a;
-	int				i;
-	t_stack_node	*el;
+	int	i;
 
-	len_a = stack_len(a);
-	el = a->first;
-	el->ind = 0;
-	i = 1;
-	while (i < len_a)
+	i = 0;
+	while (av[i])
 	{
-		el->val = av[i];
-		el->ind = i;
-		el = el->next;
+		if (sizeof(av[i]) != sizeof(int))
+			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int	find_dup(char **av)
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 0;
+	while (av[j])
+	{
+		while (av[i])
+		{
+			if (av[i] == av[j])
+				return (0);
+			i++;
+		}
+		j++;
+	}
+	return (1);
+}
+
+int	find_errors(char **av)
+{
+	if (!only_digits(av) 
+	&& !find_dup(av))
+		return (0);
+	return (1);
 }
