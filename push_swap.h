@@ -32,6 +32,7 @@ typedef struct s_stack
 
 
 /* FUNCTIONS */
+t_stack	*ft_fill(t_stack *a, char *av);
 void	rr_rrotate(t_stack s);
 void	r_rotate(t_stack s);
 void	p_push(t_stack src, t_stack dst);

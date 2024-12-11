@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/11 09:41:43 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:01:38 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	push_swap(void)
 
 int	main(int ac, char **av)
 {
-	t_stack_node	*a; // Init of stacks
-	t_stack_node	*b;
+	t_stack	*a; // Init of stacks
+	t_stack	*b;
 
 	a = NULL;
 	b = NULL;
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 		av = split(av[1], ' ');
 	if (found_errors(a))
 		return (free(a), free(b), NULL); //ERROR
-	ft_fill(&a);
+	a = ft_fill(&a, av[1]);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
