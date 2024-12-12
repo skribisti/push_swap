@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/12 16:31:06 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:54:50 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ t_stack	*ft_fill(t_stack *a, char *av);
 void	s_swap(t_stack *s, char stack);
 void	p_push(t_stack *src, t_stack *dst);
 void	r_rotate(t_stack *s, char stack);
-void	rr_rrotate(t_stack *s; char stack);
+void	rr_rrotate(t_stack *s, char stack);
 
 #endif
