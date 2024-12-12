@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/12 16:51:45 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:54:04 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_stack	*ft_ind(t_stack *a, char *av, int len_a)
 	tmp = a->first;
 	min = el->val;
 	ind = 0;
-	while (min + 1 < len_a)
+	while (min + 1 < len_a) // a finir
 	{
 		el = tmp;
 		while (el)
