@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:53:32 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/12 16:04:49 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:50:19 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strndup(char *str, int n)
 	return (tab);
 }
 
-int	ft_countwords(char const *s, int c)
+int	ft_countwords(char *s, int c)
 {
 	int	i;
 	int	j;

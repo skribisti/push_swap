@@ -6,59 +6,126 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/12 16:54:04 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:01:16 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*ft_ind(t_stack *a, char *av, int len_a)
+int	ft_first_min_val(t_stack *a)
 {
 	t_stack_node	*el;
-	t_stack_node	*tmp;
-	int				ind;
 	int				min;
 
-	tmp = a->first;
+	el = a->first;
 	min = el->val;
-	ind = 0;
-	while (min + 1 < len_a) // a finir
+	while (el)
 	{
-		el = tmp;
-		while (el)
-		{
-			if (el->val < min)
-				min = el->val;
-			el = el->next;
-		}
-		el = tmp;
-		while (el)
-		{
-			if (el->val == min)
-			{
-				el->ind = ind;
-				ind++;
-			}
-			el = el->next;
-		}
+		if (min < el->val)
+			min = el->val;
+		el = el->next;
 	}
+	return (min);
+}
+int	ft_min_val(t_stack *a, int prev)
+{
+	t_stack_node	*el;
+	int				min;
+
+	el = a->first;
+	min = el->val;
+	while (el)
+	{
+		if (min < el->val && prev < el->val)
+			min = el->val;
+		el = el->next;
+	}
+	return (min);
 }
 
-t_stack	*ft_fill(t_stack *a, char *av)
+t_stack	*ft_ind(t_stack **a)
 {
-	int				len_a;
+	t_stack_node	*el;
+	int				min;
+	int				prev;
+	int				ind;
+
+	el = (*a)->first;
+	prev = ft_first_min_val(*a);
+	while (el->val != prev)
+		el = el->next;
+	el->ind = 0;
+	ind = 1;
+	while (ind < (*a)->size)
+	{
+		min = ft_min_val(*a, prev);
+		el = (*a)->first;
+		while (el->val != min)
+			el = el->next;
+		el->ind = ind;
+		ind++;
+		prev = min;
+	}
+	return (*a);
+}
+
+t_stack	*ft_fill(t_stack **a, char **av)
+{
 	int				i;
 	t_stack_node	*el;
 
-	len_a = stack_len(a);
-	a = ft_ind(a, av, len_a);
-	el = a->first;
+	el = (*a)->first;
 	i = 1;
-	while (i < len_a)
+	while (i < (*a)->size)
 	{
-		el->val = av[i];
+		el->val = ft_atoi(av[i]);
 		el = el->next;
 		i++;
 	}
-	return (a);
+	(*a)->size = stack_len(*a);
+	*a = ft_ind(a);
+	return (*a);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	t_stack *a;
+	t_stack_node *el;
+	t_stack_node *el2;
+	t_stack_node *el3;
+
+	a = (t_stack *)malloc(sizeof(t_stack));
+	if (!a)
+		return (1);
+	a->first = NULL;
+	a->size = 3;
+
+	el = (t_stack_node *)malloc(sizeof(t_stack_node));
+	el2 = (t_stack_node *)malloc(sizeof(t_stack_node));
+	el3 = (t_stack_node *)malloc(sizeof(t_stack_node));
+	if (!el || !el2 || !el3)
+		return (1);
+
+	el->val = 100;	
+	el->next = el2;
+
+	el2->val = 50;
+	el2->next = el3;
+
+	el3->val = 70;
+	el3->next = NULL;
+	
+	printf("Values :\n");
+	printf("%d\n", el->val);
+	printf("%d\n", el2->val);
+	printf("%d\n", el3->val);
+
+	a = ft_fill(&a, ft_split("100, 50, 70", ' '));
+
+	free(el);
+	free(el2);
+	free(el3);
+	return (0);
 }
