@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/16 16:01:41 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:59:08 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <limits.h>
 # include <stdlib.h>
+#include <stdio.h>
 //# include "../libft/libft.h"
 //# include "../printf/ft_printf.h"
 
@@ -53,7 +54,7 @@ int		find_dup(char **av);
 int		only_digits(char **av);
 
 // Ft_split :
-char	**ft_split(char const *str, char c);
+char	**ft_split(char *str, char c);
 void	ft_build_line(char *str, int *s, int *e, char *c);
 int		ft_countwords(char *s, int c);
 char	*ft_strndup(char *str, int n);
