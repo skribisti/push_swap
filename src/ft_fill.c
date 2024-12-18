@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/18 10:29:19 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:16:09 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,24 @@ int	ft_min_val(t_stack *a, int prev)
 	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	min = el->val;
+	if (a->size == 1)
+		return (min);
 	i = 0;
 	while (i < a->size && el)
 	{
-		if ((min > el->val ||  el->val != prev) && prev < el->val)
+		if (el->val <= prev)
+		{
+			i++;
+			el = el->next;
+		}
+		else
+		{
+		min = prev - 1;
+		if (el->val < min)
 			min = el->val;
 		el = el->next;
 		i++;
+		}
 	}
 	return (min);
 }
@@ -211,13 +222,10 @@ int main()
 	a->first = NULL;
 
 	el = (t_stack_node *)malloc(sizeof(t_stack_node));
-	el2 = (t_stack_node *)malloc(sizeof(t_stack_node));
-	el3 = (t_stack_node *)malloc(sizeof(t_stack_node));
-	if (!el || !el2 || !el3)
-		return (1);
-	
+	if (!el)
+		return (printf("erreur malloc"), 1);
 	el = a->first;
-	av = ft_split("100 200 300", ' ');
+	av = ft_split("100 200", ' ');
 	if (!av)
     	return (printf("Error: ft_split failed\n"), 1);
 	a->size = ft_avlen(av);
@@ -226,10 +234,8 @@ int main()
 	printf("Values Stack:\n");
 	printf("%d; %d\n", a->first->val, a->first->ind);
 	printf("%d; %d\n", a->first->next->val, a->first->next->ind);
-	//printf("%d\n", a->first->next->next->val);
+	//printf("%d; %d\n", a->first->next->next->val, a->first->next->next->ind);
 
 	free(el);
-	//free(el2);
-	//free(el3);
 	return (0);
 }
