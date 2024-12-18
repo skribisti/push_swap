@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/18 11:16:09 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:54:57 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,26 @@ int	ft_first_min_val(t_stack *a)
 	}
 	return (min);
 }
+
+int	ft_first_max_val(t_stack *a)
+{
+	t_stack_node	*el;
+	int				max;
+	int				i;
+
+	el = (t_stack_node *)malloc(sizeof(t_stack_node));
+	el = a->first;
+	max = el->val;
+	i = 0;
+	while (i < a->size && el)
+	{
+		if (max < el->val)
+			max = el->val;
+		el = el->next;
+		i++;
+	}
+	return (max);
+}
 int	ft_min_val(t_stack *a, int prev)
 {
 	t_stack_node	*el;
@@ -134,25 +154,16 @@ int	ft_min_val(t_stack *a, int prev)
 
 	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
-	min = el->val;
+	min = ft_first_max_val(a);
 	if (a->size == 1)
 		return (min);
 	i = 0;
 	while (i < a->size && el)
 	{
-		if (el->val <= prev)
-		{
-			i++;
-			el = el->next;
-		}
-		else
-		{
-		min = prev - 1;
-		if (el->val < min)
-			min = el->val;
+		if (el->val > prev && (el->val <= min))
+				min = el->val;	
 		el = el->next;
 		i++;
-		}
 	}
 	return (min);
 }
@@ -201,6 +212,7 @@ t_stack	*ft_fill(t_stack **a, char **av)
 		el = el->next;
 		i++;
 	}
+	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = NULL;
 	(*a)->size = stack_len(*a) - 1;
 	*a = ft_ind(a);
@@ -225,8 +237,8 @@ int main()
 	if (!el)
 		return (printf("erreur malloc"), 1);
 	el = a->first;
-	av = ft_split("100 200", ' ');
-	if (!av)
+	av = ft_split("-300 100 200 -400", ' ');
+	if (!av) 
     	return (printf("Error: ft_split failed\n"), 1);
 	a->size = ft_avlen(av);
 	a = ft_fill(&a, av);
@@ -234,7 +246,8 @@ int main()
 	printf("Values Stack:\n");
 	printf("%d; %d\n", a->first->val, a->first->ind);
 	printf("%d; %d\n", a->first->next->val, a->first->next->ind);
-	//printf("%d; %d\n", a->first->next->next->val, a->first->next->next->ind);
+	printf("%d; %d\n", a->first->next->next->val, a->first->next->next->ind);
+	printf("%d; %d\n", a->first->next->next->next->val, a->first->next->next->next->ind);
 
 	free(el);
 	return (0);
