@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:53:32 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/16 15:50:19 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:51:09 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_free_dst(char ***dst, int *i)
 	free(*dst);
 }
 
-char	**ft_split(char const *str, char c)
+char	**ft_split(char *str, char c)
 {
 	int		tab[3];
 	char	**dst;
@@ -83,8 +83,8 @@ char	**ft_split(char const *str, char c)
 	tab[0] = 0;
 	while (str[tab[0]] && tab[2] < ft_countwords(str, (int)c))
 	{
-		ft_build_line((char *)str, &tab[0], &tab[1], &c);
-		dst[tab[2]] = ft_strndup((char *)str + tab[0], tab[1] - tab[0]);
+		ft_build_line(str, &tab[0], &tab[1], &c);
+		dst[tab[2]] = ft_strndup(str + tab[0], tab[1] - tab[0]);
 		if (dst[tab[2]] == NULL)
 		{
 			ft_free_dst(&dst, &tab[2]);
