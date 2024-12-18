@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/18 14:03:32 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:27:24 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,6 @@ t_stack	*ft_fill(t_stack **a, char **av)
 	return (*a);
 }
 
-#include <stdlib.h>
 int main()
 {
 	t_stack *a;
@@ -237,20 +236,21 @@ int main()
 	if (!el)
 		return (printf("erreur malloc"), 1);
 	el = a->first;
-	av = ft_split("-1 0 1 2 3 4 5 6 7 8 9", ' ');
+	av = ft_split("123 456 789", ' ');
 	if (!av) 
     	return (printf("Error: ft_split failed\n"), 1);
 	a->size = ft_avlen(av);
 	a = ft_fill(&a, av);
 
-	printf("Values Stack:\n");
+	printf("Stack:\n\n");
 	int	i = 0;
 	while (i < a->size)
 	{
-		printf("%d; %d\n", a->first->val, a->first->ind);
+		printf("Value : %d;\nIndex : %d\n\n", a->first->val, a->first->ind);
 		i++;
 		a->first = a->first->next;
 	}
+	
 	free(el);
 	return (0);
 }
