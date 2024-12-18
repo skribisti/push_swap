@@ -6,11 +6,21 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/17 15:37:13 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:29:19 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	ft_avlen(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 char	*ft_strndup(char *str, int n)
 {
@@ -101,15 +111,18 @@ int	ft_first_min_val(t_stack *a)
 {
 	t_stack_node	*el;
 	int				min;
+	int				i;
 
 	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	min = el->val;
-	while (el)
+	i = 0;
+	while (i < a->size && el)
 	{
-		if (min < el->val)
+		if (min > el->val)
 			min = el->val;
 		el = el->next;
+		i++;
 	}
 	return (min);
 }
@@ -117,15 +130,18 @@ int	ft_min_val(t_stack *a, int prev)
 {
 	t_stack_node	*el;
 	int				min;
+	int				i;
 
 	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	min = el->val;
-	while (el)
+	i = 0;
+	while (i < a->size && el)
 	{
-		if (min < el->val && prev < el->val)
+		if ((min > el->val ||  el->val != prev) && prev < el->val)
 			min = el->val;
 		el = el->next;
+		i++;
 	}
 	return (min);
 }
@@ -170,10 +186,12 @@ t_stack	*ft_fill(t_stack **a, char **av)
 	while (i < (*a)->size)
 	{
 		el->val = ft_atoi(av[i]);
+		el->next = (t_stack_node *)malloc(sizeof(t_stack_node));
 		el = el->next;
 		i++;
 	}
-	(*a)->size = stack_len(*a);
+	el = NULL;
+	(*a)->size = stack_len(*a) - 1;
 	*a = ft_ind(a);
 	return (*a);
 }
@@ -185,46 +203,33 @@ int main()
 	t_stack_node *el;
 	t_stack_node *el2;
 	t_stack_node *el3;
+	char **av;
 
 	a = (t_stack *)malloc(sizeof(t_stack));
 	if (!a)
 		return (1);
 	a->first = NULL;
-	a->size = 3;
 
 	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el2 = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el3 = (t_stack_node *)malloc(sizeof(t_stack_node));
 	if (!el || !el2 || !el3)
 		return (1);
-
-	el->val = 100;	
-	el->next = el2;
-
-	el2->val = 50;
-	el2->next = el3;
-
-	el3->val = 70;
-	el3->next = NULL;
 	
-	printf("Values EL :\n");
-	printf("%d\n", el->val);
-	printf("%d\n", el2->val);
-	printf("%d\n", el3->val);
-
-	char **av;
-	av = ft_split("100 50 70", ' ');
+	el = a->first;
+	av = ft_split("100 200 300", ' ');
 	if (!av)
     	return (printf("Error: ft_split failed\n"), 1);
+	a->size = ft_avlen(av);
 	a = ft_fill(&a, av);
 
-	printf("\nValues Stack:\n");
-	printf("%d\n", a->first->val);
-	printf("%d\n", a->first->next->val);
-	printf("%d\n", a->first->next->next->val);
+	printf("Values Stack:\n");
+	printf("%d; %d\n", a->first->val, a->first->ind);
+	printf("%d; %d\n", a->first->next->val, a->first->next->ind);
+	//printf("%d\n", a->first->next->next->val);
 
 	free(el);
-	free(el2);
-	free(el3);
+	//free(el2);
+	//free(el3);
 	return (0);
 }
