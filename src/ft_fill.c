@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/18 13:54:57 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:03:32 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,18 +237,20 @@ int main()
 	if (!el)
 		return (printf("erreur malloc"), 1);
 	el = a->first;
-	av = ft_split("-300 100 200 -400", ' ');
+	av = ft_split("-1 0 1 2 3 4 5 6 7 8 9", ' ');
 	if (!av) 
     	return (printf("Error: ft_split failed\n"), 1);
 	a->size = ft_avlen(av);
 	a = ft_fill(&a, av);
 
 	printf("Values Stack:\n");
-	printf("%d; %d\n", a->first->val, a->first->ind);
-	printf("%d; %d\n", a->first->next->val, a->first->next->ind);
-	printf("%d; %d\n", a->first->next->next->val, a->first->next->next->ind);
-	printf("%d; %d\n", a->first->next->next->next->val, a->first->next->next->next->ind);
-
+	int	i = 0;
+	while (i < a->size)
+	{
+		printf("%d; %d\n", a->first->val, a->first->ind);
+		i++;
+		a->first = a->first->next;
+	}
 	free(el);
 	return (0);
 }
