@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/18 16:25:44 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:28:48 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ int		find_dup(char **av);
 int		only_digits(char **av);
 
 // Ft_split :
+char	*ft_strndup(char *str, int n);
+int	ft_countwords(char *s, int c);
+void	ft_build_line(char *str, int *s, int *e, char *c);
+void	ft_free_dst(char ***dst, int *i);
+char	**ft_split(char *str, char c);
 
 // Push swap allowed funcs
 void	s_swap(t_stack *s, char stack);

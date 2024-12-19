@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/18 16:52:44 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:39:53 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,14 @@ int	ft_min_val(t_stack *a, int prev)
 	return (min);
 }
 
+int	ft_itob(int nb)
+{
+	char *base;
+
+	base = "01";
+	
+}
+
 t_stack	*ft_ind(t_stack **a)
 {
 	t_stack_node	*el;
@@ -109,6 +117,23 @@ t_stack	*ft_ind(t_stack **a)
 	}
 	return (*a);
 }
+t_stack	*ft_bin_ind(t_stack **a)
+{
+	t_stack_node	*el;
+	int				i;
+
+	el = (t_stack_node *)malloc(sizeof(t_stack_node));
+	el = (*a)->first;
+	i = 0;
+	while (i < (*a)->size)
+	{
+		el->ind = ft_itob(el->ind);
+		el = el->next;
+		i++;
+	}
+	return (*a);
+}
+
 
 t_stack	*ft_fill(t_stack **a, char **av)
 {
@@ -131,6 +156,7 @@ t_stack	*ft_fill(t_stack **a, char **av)
 	el = NULL;
 	(*a)->size = stack_len(*a) - 1;
 	*a = ft_ind(a);
+	*a = ft_bin_ind(a);
 	return (*a);
 }
 
@@ -149,7 +175,7 @@ int main()
 	if (!el)
 		return (printf("erreur malloc"), 1);
 	el = a->first;
-	av = ft_split("123 456 789", ' ');
+	av = ft_split("123 456 789 1 -300 200", ' ');
 	if (!av) 
     	return (printf("Error: ft_split failed\n"), 1);
 	a->size = ft_avlen(av);
