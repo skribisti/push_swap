@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/19 15:39:53 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:23:16 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ int	ft_min_val(t_stack *a, int prev)
 	return (min);
 }
 
-int	ft_itob(int nb)
+/*int	ft_itob(int nb)
 {
 	char *base;
 
 	base = "01";
 	
-}
+}*/
 
 t_stack	*ft_ind(t_stack **a)
 {
@@ -117,7 +117,7 @@ t_stack	*ft_ind(t_stack **a)
 	}
 	return (*a);
 }
-t_stack	*ft_bin_ind(t_stack **a)
+/*t_stack	*ft_bin_ind(t_stack **a)
 {
 	t_stack_node	*el;
 	int				i;
@@ -132,7 +132,7 @@ t_stack	*ft_bin_ind(t_stack **a)
 		i++;
 	}
 	return (*a);
-}
+}*/
 
 
 t_stack	*ft_fill(t_stack **a, char **av)
@@ -156,7 +156,7 @@ t_stack	*ft_fill(t_stack **a, char **av)
 	el = NULL;
 	(*a)->size = stack_len(*a) - 1;
 	*a = ft_ind(a);
-	*a = ft_bin_ind(a);
+	//*a = ft_bin_ind(a);
 	return (*a);
 }
 
