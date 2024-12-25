@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/20 15:56:24 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/25 19:59:13 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,16 @@ int	ft_min_val(t_stack *a, int prev)
 	return (min);
 }
 
-int	ft_itob(int nb)
+char	*ft_itob(int nb)
 {
-	char *base;
-	int	res;
+	char	*res;
 
 	if (nb == 0)
 		return (0);
-	base = "01";
 	res = 0;
-	if (nb > ft_strlen(base))
-		ft_itob(nb / ft_strlen(base));
-	res = res + nb % ft_strlen(base);
+	if (nb > 2)
+		ft_itob(nb / 2);
+	res = res + nb % 2;
 	return (res);
 }
 
@@ -191,7 +189,7 @@ int main()
 	if (!el)
 		return (printf("erreur malloc"), 1);
 	el = a->first;
-	av = ft_split("1 2 3 4 5 6", ' ');
+	av = ft_split("0 1 2 3 4 5 6", ' ');
 	if (!av) 
     	return (printf("Error: ft_split failed\n"), 1);
 	a->size = ft_avlen(av);
