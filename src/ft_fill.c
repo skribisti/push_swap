@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/29 23:00:49 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/29 23:07:53 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,40 +92,22 @@ int	ft_min_val(t_stack *a, int prev)
 	return (min);
 }
 
-int	ft_bin_len(int nb)
-{
-	int	cpt;
-
-	cpt = 1;
-	while (nb)
-	{
-		nb /= 2;
-		cpt++;
-	}
-	return (cpt);
-}
-
 int	ft_itob(int nb)
 {
-	char	*res;
-	int		len;
-	int		i;
+    int	bin;
+    int	place;
 
-	len = ft_bin_len(nb);
-	if (nb == 0)
-		return (0);
-	res = (char *)malloc((len + 1) * sizeof(char));
-	if (!res)
-		return (0);
-	res[len] = 0;
-	i = 1;
-	while (i < len)
-	{
-		res[len - i] = (nb % 10) + '0';
-		nb /= 2;
-		i++;
-	}
-	return (ft_atoi(res));
+    if (nb == 0)
+        return (0);
+    bin = 0;
+    place = 1;
+    while (nb > 0)
+    {
+        bin += (nb % 2) * place;
+        nb /= 2;
+        place *= 10;
+    }
+    return (bin);
 }
 
 t_stack	*ft_ind(t_stack **a)
