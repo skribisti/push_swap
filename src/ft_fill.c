@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/25 19:59:13 by norabino         ###   ########.fr       */
+/*   Updated: 2024/12/29 23:00:49 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,40 @@ int	ft_min_val(t_stack *a, int prev)
 	return (min);
 }
 
-char	*ft_itob(int nb)
+int	ft_bin_len(int nb)
+{
+	int	cpt;
+
+	cpt = 1;
+	while (nb)
+	{
+		nb /= 2;
+		cpt++;
+	}
+	return (cpt);
+}
+
+int	ft_itob(int nb)
 {
 	char	*res;
+	int		len;
+	int		i;
 
+	len = ft_bin_len(nb);
 	if (nb == 0)
 		return (0);
-	res = 0;
-	if (nb > 2)
-		ft_itob(nb / 2);
-	res = res + nb % 2;
-	return (res);
+	res = (char *)malloc((len + 1) * sizeof(char));
+	if (!res)
+		return (0);
+	res[len] = 0;
+	i = 1;
+	while (i < len)
+	{
+		res[len - i] = (nb % 10) + '0';
+		nb /= 2;
+		i++;
+	}
+	return (ft_atoi(res));
 }
 
 t_stack	*ft_ind(t_stack **a)
@@ -170,7 +193,7 @@ t_stack	*ft_fill(t_stack **a, char **av)
 	el = NULL;
 	(*a)->size = stack_len(*a) - 1;
 	*a = ft_ind(a);
-	//*a = ft_bin_ind(a);
+	*a = ft_bin_ind(a);
 	return (*a);
 }
 
