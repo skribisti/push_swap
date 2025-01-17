@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/16 15:46:25 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:15:11 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	push_swap(int ac, char **av)
 		if (stack_len(a) <= 5)
 			sort_small(a, av);
 		else
-			ft_redix(a, b);
+			ft_radix(a, b);
 	}
 	return (0);
 }

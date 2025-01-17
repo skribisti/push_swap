@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/19 15:28:48 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:55:59 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_stack
 /* FUNCTIONS */
 
 // Ft_fill :
-int	ft_first_min_val(t_stack *a);
-int	ft_min_val(t_stack *a, int prev);
+int		ft_first_min_val(t_stack *a);
+int		ft_min_val(t_stack *a, int prev);
 t_stack	*ft_ind(t_stack **a);
 t_stack	*ft_fill(t_stack **a, char **av);
 
@@ -55,15 +55,12 @@ int		only_digits(char **av);
 
 // Ft_split :
 char	*ft_strndup(char *str, int n);
-int	ft_countwords(char *s, int c);
+int		ft_countwords(char *s, int c);
 void	ft_build_line(char *str, int *s, int *e, char *c);
 void	ft_free_dst(char ***dst, int *i);
 char	**ft_split(char *str, char c);
 
 // Push swap allowed funcs
-void	s_swap(t_stack *s, char stack);
-void	p_push(t_stack *src, t_stack *dst);
-void	r_rotate(t_stack *s, char stack);
-void	rr_rrotate(t_stack *s, char stack);
+void	*swap(t_stack *stack);
 
 #endif
