@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/17 11:24:36 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:56:36 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,28 +179,47 @@ t_stack	*ft_fill(t_stack **a, char **av)
 	return (*a);
 }
 
+t_stack *ft_recalc_ind(t_stack **stack)
+{
+	*stack = ft_ind(stack);
+	*stack = ft_bin_ind(stack);
+	return (*stack);
+}
+
 int main()
 {
 	t_stack *a;
-	t_stack_node *el;
-	char **av;
+	t_stack *b;
+	t_stack_node *el_a;
+	t_stack_node *el_b;
+	char **content_a;
+	char **content_b;
 
 	a = (t_stack *)malloc(sizeof(t_stack *));
-	if (!a)
+	b = (t_stack *)malloc(sizeof(t_stack *));
+	if (!a || !_BITS_STDIO_LIM_H)
 		return (1);
 	a->first = NULL;
+	b->first = NULL;
 
-	el = (t_stack_node *)malloc(sizeof(t_stack_node *));
-	if (!el)
+	el_a = (t_stack_node *)malloc(sizeof(t_stack_node *));
+	el_b = (t_stack_node *)malloc(sizeof(t_stack_node *));
+	if (!el_a || !el_b)
 		return (printf("Erreur malloc"), 1);
-	el = a->first;
-	av = ft_split("0 1 2 3 4", ' ');
-	if (!av) 
+	el_a = a->first;
+	el_b = b->first;
+	content_a = ft_split("1 2 3", ' '); 
+	content_b = ft_split("4 5 6", ' ');
+	if (!content_a || !content_b) 
     	return (printf("Error: ft_split failed\n"), 1);
-	a->size = ft_avlen(av);
-	a = ft_fill(&a, av);
+	a->size = ft_avlen(content_a);
+	b->size = ft_avlen(content_b);
+	a = ft_fill(&a, content_a);
+	b = ft_fill(&b, content_b);
 
-	printf("Stack:\n\n");
+	push(&a, &b, 'b');
+
+	printf("StackA:\n");
 	int	i = 0;
 	while (i < a->size)
 	{
@@ -208,6 +227,15 @@ int main()
 		i++;
 		a->first = a->first->next;
 	}
-	free(el);
+	i = 0;
+	printf("\n”StackB:\n");
+	while (i < b->size)
+	{
+		printf("Value : %d;\nIndex : %d\n\n", b->first->val, b->first->ind);
+		i++;
+		b->first = b->first->next;
+	}
+	free(el_a);
+	free(el_b);
 	return (0);
 }

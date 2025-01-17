@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/17 10:55:59 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:52:26 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		ft_first_min_val(t_stack *a);
 int		ft_min_val(t_stack *a, int prev);
 t_stack	*ft_ind(t_stack **a);
 t_stack	*ft_fill(t_stack **a, char **av);
+t_stack *ft_recalc_ind(t_stack **stack);
 
 int		stack_len(t_stack *a);
 
@@ -62,5 +63,6 @@ char	**ft_split(char *str, char c);
 
 // Push swap allowed funcs
 void	*swap(t_stack *stack);
+void	*push(t_stack **a, t_stack **b, char push_to);
 
 #endif
