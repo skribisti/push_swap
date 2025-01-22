@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/22 10:50:39 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:53:30 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ int main()
 		b = ft_fill(&b, content_b);
 
 	//push(&a, &b, 'b');
-	//rotate(&b);
+	//reverse_rotate(&a);
 
 	printf("StackA:\n");
 	int	i = 0;
