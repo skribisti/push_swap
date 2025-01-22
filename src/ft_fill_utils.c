@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:51:55 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/16 15:55:44 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:23:55 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	stack_len(t_stack *a)
 	int	cpt;
 	t_stack_node	*el;
 
+	el = malloc(sizeof(t_stack_node *));
 	el = a->first;
 	cpt = 0;
 	while (el)
@@ -57,5 +58,6 @@ int	stack_len(t_stack *a)
 		el = el->next;
 		cpt++;
 	}
+	free(el);
 	return (cpt);
 }

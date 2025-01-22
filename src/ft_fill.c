@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/21 01:10:50 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:50:39 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,29 +154,31 @@ t_stack	*ft_bin_ind(t_stack **a)
 }
 
 
-t_stack	*ft_fill(t_stack **a, char **av)
+t_stack	*ft_fill(t_stack **stack, char **av)
 {
 	int				i;
 	t_stack_node	*el = NULL;
 
-	if (!(*a) || !av)
+	if (!(*stack) || !av || !ft_avlen(av))
         return (NULL);
-	(*a)->first = (t_stack_node *)malloc(sizeof(t_stack_node));
-	el = (*a)->first;
+	(*stack)->first = (t_stack_node *)malloc(sizeof(t_stack_node *));
+	el = (*stack)->first;
 	i = 0;
-	while (i < (*a)->size)
+	while (i < (*stack)->size)
 	{
 		el->val = ft_atoi(av[i]);
-		el->next = (t_stack_node *)malloc(sizeof(t_stack_node));
-		el = el->next;
+		if (i != (*stack)->size - 1)
+		{
+			el->next = (t_stack_node *)malloc(sizeof(t_stack_node *));
+			el = el->next;
+		}
 		i++;
 	}
-	el = (t_stack_node *)malloc(sizeof(t_stack_node));
-	el = NULL;
-	(*a)->size = stack_len(*a) - 1;
-	*a = ft_ind(a);
-	*a = ft_bin_ind(a);
-	return (*a);
+	el->next = NULL;
+	(*stack)->size = stack_len(*stack);
+	*stack = ft_ind(stack);
+	*stack = ft_bin_ind(stack);
+	return (*stack);
 }
 
 t_stack *ft_recalc_ind(t_stack **stack)
@@ -208,33 +210,46 @@ int main()
 		return (printf("Erreur malloc"), 1);
 	el_a = a->first;
 	el_b = b->first;
-	content_a = ft_split("1 2 3", ' '); 
-	content_b = ft_split("4 5 6", ' ');
+	content_a = ft_split("1 2 3 4 5", ' '); 
+	content_b = ft_split("", ' ');
 	if (!content_a || !content_b) 
     	return (printf("Error: ft_split failed\n"), 1);
 	a->size = ft_avlen(content_a);
 	b->size = ft_avlen(content_b);
-	a = ft_fill(&a, content_a);
-	b = ft_fill(&b, content_b);
+	if (a->size)
+		a = ft_fill(&a, content_a);
+	if (b->size)	
+		b = ft_fill(&b, content_b);
 
 	//push(&a, &b, 'b');
-	rotate(&a);
+	//rotate(&b);
 
 	printf("StackA:\n");
 	int	i = 0;
-	while (i < a->size)
+	if (a->size == 0)
+		printf("%s", "Pile a vide.\n");
+	else
 	{
-		printf("Value : %d;\nIndex : %d\n\n", a->first->val, a->first->ind);
-		i++;
-		a->first = a->first->next;
+		while (i < a->size)
+		{
+			printf("Value : %d;\nIndex : %d\n\n", a->first->val, a->first->ind);
+			i++;
+			a->first = a->first->next;
+		}
 	}
+
+	printf("\nStackB:\n");
 	i = 0;
-	printf("\n”StackB:\n");
+	if (b->size == 0)
+		printf("%s", "Pile b vide.\n");
+	else
+	{
 	while (i < b->size)
 	{
 		printf("Value : %d;\nIndex : %d\n\n", b->first->val, b->first->ind);
 		i++;
 		b->first = b->first->next;
+	}
 	}
 	free(el_a);
 	free(el_b);
