@@ -6,11 +6,11 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 09:59:18 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:42:51 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	ft_avlen(char **str)
 {
@@ -181,49 +181,43 @@ t_stack	*ft_fill(t_stack **stack, char **av)
 	return (*stack);
 }
 
-t_stack *ft_recalc_ind(t_stack **stack)
+/*
+void	verif_instruction(char *instruc, t_stack **a, t_stack **b)
 {
-	*stack = ft_ind(stack);
-	*stack = ft_bin_ind(stack);
-	return (*stack);
-}
+	if (instruc[0] == 's' && instruc[1] == 'a')
+		swap(&a);
+	if (instruc[0] == 's' && instruc[1] == 'b')
+		swap(&b);
+	if (instruc[0] == 's' && instruc[1] == 's')
+	{
+		swap(&a);
+		swap(&b);
+	}
+	if (instruc[0] == 'p' && instruc[1])
+		push(&a, &b, instruc[1]);
+	if (instruc[0] == 'r' && instruc[1] == 'a')
+		rotate(&a);
+	if (instruc[0] == 'r' && instruc[1] == 'b')
+		rotate(&b);
+	if (instruc[0] == 'r' && instruc[1] == 'r')
+	{
+		rotate(&a);
+		rotate(&b);
+	}
+	if (instruc[0] == 'r' && instruc[1] == 'r' && instruc[1] == 'a')
+		reverse_rotate(&a);
+	if (instruc[0] == 'r' && instruc[1] == 'r' && instruc[1] == 'b')
+		reverse_rotate(&b);
+	if (instruc[0] == 'r' && instruc[1] == 'r' && instruc[1] == 'r')
+	{
+		reverse_rotate(&a);
+		reverse_rotate(&b);
+	}
 
-int main()
+}*/
+
+void	ft_print_stacks(t_stack *a, t_stack *b)
 {
-	t_stack *a;
-	t_stack *b;
-	t_stack_node *el_a;
-	t_stack_node *el_b;
-	char **content_a;
-	char **content_b;
-
-	a = (t_stack *)malloc(sizeof(t_stack *));
-	b = (t_stack *)malloc(sizeof(t_stack *));
-	if (!a || !_BITS_STDIO_LIM_H)
-		return (1);
-	a->first = NULL;
-	b->first = NULL;
-
-	el_a = (t_stack_node *)malloc(sizeof(t_stack_node *));
-	el_b = (t_stack_node *)malloc(sizeof(t_stack_node *));
-	if (!el_a || !el_b)
-		return (printf("Erreur malloc"), 1);
-	el_a = a->first;
-	el_b = b->first;
-	content_a = ft_split("1 2 3", ' '); 
-	content_b = ft_split("", ' ');
-	if (!content_a || !content_b) 
-    	return (printf("Error: ft_split failed\n"), 1);
-	a->size = ft_avlen(content_a);
-	b->size = ft_avlen(content_b);
-	if (a->size)
-		a = ft_fill(&a, content_a);
-	if (b->size)	
-		b = ft_fill(&b, content_b);
-
-	//push(&a, &b, 'b');
-	reverse_rotate(&a);
-
 	printf("StackA:\n");
 	int	i = 0;
 	if (a->size == 0)
@@ -237,21 +231,55 @@ int main()
 			a->first = a->first->next;
 		}
 	}
-
 	printf("\nStackB:\n");
 	i = 0;
 	if (b->size == 0)
 		printf("%s", "Pile b vide.\n");
 	else
 	{
-	while (i < b->size)
-	{
-		printf("Value : %d\nIndex : %d\n\n", b->first->val, b->first->ind);
-		i++;
-		b->first = b->first->next;
+		while (i < b->size)
+		{
+			printf("Value : %d\nIndex : %d\n\n", b->first->val, b->first->ind);
+			i++;
+			b->first = b->first->next;
+		}
 	}
-	}
-	free(el_a);
-	free(el_b);
+}
+
+#include <unistd.h>
+int main()
+{
+	t_stack *a;
+	t_stack *b;
+	char **content_a;
+	char **content_b;
+
+	a = (t_stack *)malloc(sizeof(t_stack *));
+	b = (t_stack *)malloc(sizeof(t_stack *));
+	if (!a || !b)
+		return (1);
+	a->first = NULL;
+	b->first = NULL;
+
+	content_a = ft_split("0 1 2 3", ' '); 
+	content_b = ft_split("", ' ');
+	if (!content_a || !content_b) 
+    	return (printf("Error: ft_split failed\n"), 1);
+	a->size = ft_avlen(content_a);
+	b->size = ft_avlen(content_b);
+	if (a->size)
+		a = ft_fill(&a, content_a);
+	if (b->size)	
+		b = ft_fill(&b, content_b);
+
+	//swap(a);
+	//rotate(&a);
+	
+	ft_print_stacks(a, b);
+
+	//char *instruction;
+	//instruction = get_next_line(STDIN_FILENO);
+	//verif_instruction(instruction);
+
 	return (0);
 }

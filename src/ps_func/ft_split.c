@@ -6,11 +6,11 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:53:32 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/19 15:15:45 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:56:14 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 char	*ft_strndup(char *str, int n)
 {

@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:27:24 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/17 11:54:04 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:46:18 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,5 @@ void	*push(t_stack **a, t_stack **b, char push_to)
 		(*a)->size -= 1;
 		(*b)->size += 1;
 	}
-	ft_recalc_ind(a);
-	ft_recalc_ind(b);
 	return (NULL);
 }

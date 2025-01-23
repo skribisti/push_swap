@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:40:27 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 09:56:34 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:52:51 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ void	*rotate(t_stack **stack)
 	if (!el || !temp)
 		return (NULL);
 	el = (*stack)->first;
-	temp->val = el->val;
+	temp = el;
 	while (el->next)
 	{
-		el->val = el->next->val;
+		el = el->next;
 		el = el->next;
 	}
-	el->val = temp->val;
-	ft_recalc_ind(stack);
+	el = temp;
 	return (NULL);
 }

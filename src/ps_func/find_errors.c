@@ -6,21 +6,29 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:52:36 by norabino          #+#    #+#             */
-/*   Updated: 2024/12/12 16:04:57 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:33:17 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	only_digits(char **av)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (av[i])
 	{
-		if (sizeof(av[i]) != sizeof(int))
-			return (0);
+		j = 0;
+		while (av[i][j])
+		{
+			if ((av[i][j] < '0' && av[i][j] > '9') 
+				|| av[i][0] == '+' || av[i][0] == '-')
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	return (1);
@@ -35,6 +43,7 @@ int	find_dup(char **av)
 	j = 0;
 	while (av[j])
 	{
+		i = 0;
 		while (av[i])
 		{
 			if (av[i] == av[j])

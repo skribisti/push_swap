@@ -6,11 +6,11 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:51:55 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/22 10:23:55 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:55:58 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	ft_isdigit(int c)
 {
