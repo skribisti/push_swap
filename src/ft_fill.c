@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/22 11:53:30 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:47:28 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ int main()
 		b = ft_fill(&b, content_b);
 
 	//push(&a, &b, 'b');
-	//reverse_rotate(&a);
+	reverse_rotate(&a);
 
 	printf("StackA:\n");
 	int	i = 0;
@@ -232,7 +232,7 @@ int main()
 	{
 		while (i < a->size)
 		{
-			printf("Value : %d;\nIndex : %d\n\n", a->first->val, a->first->ind);
+			printf("Value : %d\nIndex : %d\n\n", a->first->val, a->first->ind);
 			i++;
 			a->first = a->first->next;
 		}
@@ -246,7 +246,7 @@ int main()
 	{
 	while (i < b->size)
 	{
-		printf("Value : %d;\nIndex : %d\n\n", b->first->val, b->first->ind);
+		printf("Value : %d\nIndex : %d\n\n", b->first->val, b->first->ind);
 		i++;
 		b->first = b->first->next;
 	}

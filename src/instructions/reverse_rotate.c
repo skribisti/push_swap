@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:54:58 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/22 11:50:35 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:07:52 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void	*reverse_rotate(t_stack **stack)
 	if (!el || !temp)
 		return (NULL);
 	el = (*stack)->first;
-	temp->val = el->next->val;
-	while (el->next)
+	while (el)
 	{
-		el->next->val = temp->val;
-		temp->val = el->next->val;
+		if (!(el->next->next))
+		{
+			el->next = NULL;
+			break;
+		}
 		el = el->next;
 	}
 	(*stack)->first->val = el->val;
