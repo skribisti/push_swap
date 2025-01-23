@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 00:47:28 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/23 09:59:18 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ int main()
 		return (printf("Erreur malloc"), 1);
 	el_a = a->first;
 	el_b = b->first;
-	content_a = ft_split("1 2 3 4 5", ' '); 
+	content_a = ft_split("1 2 3", ' '); 
 	content_b = ft_split("", ' ');
 	if (!content_a || !content_b) 
     	return (printf("Error: ft_split failed\n"), 1);
