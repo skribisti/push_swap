@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 16:42:51 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:36:18 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,7 @@ int main()
 	if (b->size)	
 		b = ft_fill(&b, content_b);
 
-	//swap(a);
+	//swap(&a);
 	//rotate(&a);
 	
 	ft_print_stacks(a, b);

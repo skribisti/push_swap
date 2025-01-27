@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 16:35:41 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:31:29 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_free_dst(char ***dst, int *i);
 char	**ft_split(char *str, char c);
 
 // Push swap allowed funcs
-void	*swap(t_stack *stack);
+void	*swap(t_stack **stack);
 void	*push(t_stack **a, t_stack **b, char push_to);
 void	*rotate(t_stack **stack);
 void	*reverse_rotate(t_stack **stack);
