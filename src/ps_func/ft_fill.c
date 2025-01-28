@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/27 13:36:18 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:38:45 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,19 +216,25 @@ void	verif_instruction(char *instruc, t_stack **a, t_stack **b)
 
 }*/
 
-void	ft_print_stacks(t_stack *a, t_stack *b)
+int	ft_print_stacks(t_stack *a, t_stack *b)
 {
+	t_stack_node	*el;
+
+	el = malloc(sizeof(t_stack_node *));
+	if (!el)
+		return (1);
 	printf("StackA:\n");
 	int	i = 0;
 	if (a->size == 0)
 		printf("%s", "Pile a vide.\n");
 	else
 	{
+		el = a->first;
 		while (i < a->size)
 		{
-			printf("Value : %d\nIndex : %d\n\n", a->first->val, a->first->ind);
+			printf("Value : %d\nIndex : %d\n\n", el->val, el->ind);
 			i++;
-			a->first = a->first->next;
+			el = el->next;
 		}
 	}
 	printf("\nStackB:\n");
@@ -237,13 +243,15 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 		printf("%s", "Pile b vide.\n");
 	else
 	{
+		el = b->first;
 		while (i < b->size)
 		{
-			printf("Value : %d\nIndex : %d\n\n", b->first->val, b->first->ind);
+			printf("Value : %d\nIndex : %d\n\n", el->val, el->ind);
 			i++;
-			b->first = b->first->next;
+			el = el->next;
 		}
 	}
+	return (0);
 }
 
 #include <unistd.h>
@@ -272,8 +280,11 @@ int main()
 	if (b->size)	
 		b = ft_fill(&b, content_b);
 
+	ft_print_stacks(a, b);
+
 	//swap(&a);
-	//rotate(&a);
+	rotate(&a);
+	reverse_rotate(&a);
 	
 	ft_print_stacks(a, b);
 

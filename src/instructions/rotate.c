@@ -6,30 +6,25 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:40:27 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 15:52:51 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:34:49 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	*rotate(t_stack **stack)
+void *rotate(t_stack **stack)
 {
-	t_stack_node	*el;
-	t_stack_node	*temp;
+    t_stack_node *first;
+    t_stack_node *last;
 
-	if ((*stack)->size < 2)
-		return (NULL);
-	el = malloc(sizeof(t_stack_node *));
-	temp = malloc(sizeof(t_stack_node *));
-	if (!el || !temp)
-		return (NULL);
-	el = (*stack)->first;
-	temp = el;
-	while (el->next)
-	{
-		el = el->next;
-		el = el->next;
-	}
-	el = temp;
-	return (NULL);
+    if ((*stack)->size < 2)
+        return (NULL);
+    first = (*stack)->first;
+    last = (*stack)->first;
+    while (last->next)
+        last = last->next;
+    (*stack)->first = first->next;
+    first->next = NULL;
+    last->next = first;
+    return (NULL);
 }
