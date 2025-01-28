@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/28 13:38:45 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:42:24 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,8 +283,12 @@ int main()
 	ft_print_stacks(a, b);
 
 	//swap(&a);
-	rotate(&a);
-	reverse_rotate(&a);
+	//rotate(&a);
+	//reverse_rotate(&a);
+
+
+
+
 	
 	ft_print_stacks(a, b);
 
