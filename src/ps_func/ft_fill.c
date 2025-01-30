@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/28 13:42:24 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/30 20:50:30 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,22 +152,40 @@ t_stack	*ft_bin_ind(t_stack **a)
 	}
 	return (*a);
 }
+/*int	stack_len(t_stack *a)
+{
+	int	cpt;
+	t_stack_node	*el;
 
-
+	el = a->first;
+	cpt = 0;
+	while (el)
+	{
+		el = el->next;
+		cpt++;
+	}
+	return (cpt);
+}*/
 t_stack	*ft_fill(t_stack **stack, char **av)
 {
 	int				i;
 	t_stack_node	*el = NULL;
-
+	
+	(*stack) = malloc(sizeof(t_stack *));
+	if (!ft_avlen(av))
+	{
+		(*stack)->size = 0;
+		(*stack)->first = NULL;
+	}
 	if (!(*stack) || !av || !ft_avlen(av))
         return (NULL);
 	(*stack)->first = (t_stack_node *)malloc(sizeof(t_stack_node *));
 	el = (*stack)->first;
 	i = 0;
-	while (i < (*stack)->size)
+	while (i < ft_avlen(av))
 	{
 		el->val = ft_atoi(av[i]);
-		if (i != (*stack)->size - 1)
+		if (i != ft_avlen(av) - 1)
 		{
 			el->next = (t_stack_node *)malloc(sizeof(t_stack_node *));
 			el = el->next;
@@ -216,45 +234,7 @@ void	verif_instruction(char *instruc, t_stack **a, t_stack **b)
 
 }*/
 
-int	ft_print_stacks(t_stack *a, t_stack *b)
-{
-	t_stack_node	*el;
-
-	el = malloc(sizeof(t_stack_node *));
-	if (!el)
-		return (1);
-	printf("StackA:\n");
-	int	i = 0;
-	if (a->size == 0)
-		printf("%s", "Pile a vide.\n");
-	else
-	{
-		el = a->first;
-		while (i < a->size)
-		{
-			printf("Value : %d\nIndex : %d\n\n", el->val, el->ind);
-			i++;
-			el = el->next;
-		}
-	}
-	printf("\nStackB:\n");
-	i = 0;
-	if (b->size == 0)
-		printf("%s", "Pile b vide.\n");
-	else
-	{
-		el = b->first;
-		while (i < b->size)
-		{
-			printf("Value : %d\nIndex : %d\n\n", el->val, el->ind);
-			i++;
-			el = el->next;
-		}
-	}
-	return (0);
-}
-
-#include <unistd.h>
+/*#include <unistd.h>
 int main()
 {
 	t_stack *a;
@@ -286,10 +266,6 @@ int main()
 	//rotate(&a);
 	//reverse_rotate(&a);
 
-
-
-
-	
 	ft_print_stacks(a, b);
 
 	//char *instruction;
@@ -297,4 +273,4 @@ int main()
 	//verif_instruction(instruction);
 
 	return (0);
-}
+}*/

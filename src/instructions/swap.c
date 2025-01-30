@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:47:13 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/27 13:35:43 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:43:36 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*swap(t_stack **stack)
 
 	first = malloc(sizeof(t_stack_node *));
 	second = malloc(sizeof(t_stack_node *));
-	if (!first || !second || (*stack)->size <= 1)
+	if (!first || !second || !(*stack))
 		return (NULL);
 	second = (*stack)->first;
 	first = second->next;

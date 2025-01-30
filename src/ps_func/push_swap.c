@@ -6,47 +6,108 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 10:56:18 by norabino         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:52:35 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	stack_len(t_stack *a)
+int	stack_sorted(t_stack *a)
 {
-	int	cpt;
-	t_stack_node	*el;
+	t_stack_node *el;
+	int			current;
+	int			next;
 
 	el = a->first;
-	cpt = 0;
+	while (el->next)
+	{
+		current = el->val;
+		next = el->next->val;
+		if (current > next)
+			return (0);
+		el = el->next;
+	}
+	return (1);
+}
+void	free_stack(t_stack *stack)
+{
+	t_stack_node	*el;
+	t_stack_node	*temp;
+
+	if (!stack->size)
+	{
+		free(stack);
+		return ;
+	}
+	el = stack->first;
 	while (el)
 	{
+		temp = el;
 		el = el->next;
-		cpt++;
+		free(temp);
 	}
-	return (cpt);
+	free(stack);
+}
+int	ft_print_stack(t_stack *stack)
+{
+	t_stack_node	*el;
+
+	el = malloc(sizeof(t_stack_node *));
+	if (!el)
+		return (1);
+	printf("Stack :\n");
+	int	i = 0;
+	if (stack->size == 0)
+		printf("%s", "Pile vide.\n");
+	else
+	{
+		el = stack->first;
+		while (i < stack->size)
+		{
+			printf("Value : %d\nIndex : %d\n\n", el->val, el->ind);
+			i++;
+			el = el->next;
+		}
+	}
+	return (0);
+}
+
+void remove_first_arg(char **av)
+{
+    int i;
+
+	i = 0;
+    while (av[i])
+    {
+        av[i] = av[i + 1];
+        i++;
+    }
 }
 
 int	push_swap(int ac, char **av)
 {
-	t_stack	*a; // Init of stacks
+	t_stack	*a;
 	t_stack	*b;
 
 	a = NULL;
 	b = NULL;
-	if (ac == 1 || (ac == 2 && !av[1][0])) // Input errors
-		return(1); // Error
-	if (ac == 2) // String input, call split
+	if (ac == 1 || (ac == 2 && !av))
+		return(printf("%s", "Wrong format."), 1);
+	if (ac == 2)
 		av = ft_split(av[1], ' ');
+	else
+		remove_first_arg(av);
 	if (find_errors(av))
-		return (free(a), free(b), 0); //ERROR
-	a = ft_fill(&a, av[1]);
+		return (0);
+	a = ft_fill(&a, av);
+	b = ft_fill(&b, ft_split("", ' '));
+	ft_print_stack(a);
 	if (!stack_sorted(a))
 	{
-		if (stack_len(a) <= 5)
-			sort_small(a, av);
+		if (a->size <= 5)
+			sort_small(&a, &b);
 		else
-			ft_radix(a, b);
+			ft_radix(&a, &b);
 	}
 	return (0);
 }
