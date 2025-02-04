@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/30 21:52:35 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:42:19 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	push_swap(int ac, char **av)
 		else
 			ft_radix(&a, &b);
 	}
+	ft_print_stack(a);
 	return (0);
 }
 

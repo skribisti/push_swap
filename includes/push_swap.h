@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/30 20:24:44 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:18:27 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_stack_node
 	int					val;
 	int					ind;
 	int					push_cost;
-	struct s_stack_node *next;
+	struct s_stack_node	*next;
 }	t_stack_node;
 
 typedef struct s_stack
@@ -32,7 +32,6 @@ typedef struct s_stack
 	t_stack_node	*first;
 	int				size;
 }	t_stack;
-
 
 /* FUNCTIONS */
 
@@ -45,7 +44,7 @@ int		ft_first_min_val(t_stack *a);
 int		ft_min_val(t_stack *a, int prev);
 t_stack	*ft_ind(t_stack **a);
 t_stack	*ft_fill(t_stack **a, char **av);
-t_stack *ft_recalc_ind(t_stack **stack);
+t_stack	*ft_recalc_ind(t_stack **stack);
 
 int		stack_len(t_stack *a);
 

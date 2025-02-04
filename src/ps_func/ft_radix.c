@@ -6,17 +6,51 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:01:04 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/30 21:58:47 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:57:48 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
+int	ft_max_bits(t_stack *a)
+{
+	t_stack_node	*el;
+	int				max;
+	int				max_bits;
+
+	el = a->first;
+	max = el->ind;
+	max_bits = 0;
+	while (el)
+	{
+		if (el->ind > max)
+			max = el->ind;
+		el = el->next;
+	}
+	while (max)
+	{
+		max /= 2;
+		max_bits++;
+	}
+	return (max_bits);
+}
+
 void	ft_radix(t_stack **a, t_stack **b)
 {
 	printf("%s", "radix");
-	swap(a);
-	swap(b);
-	swap(a);
-	swap(b);
+	rotate(a);
+	reverse_rotate(a);
+	rotate(b);
+	reverse_rotate(b);
+	/*t_stack_node	*el;
+	int				size;
+	int				max_bits;
+
+	el = (*a)->first;
+	size = (*a)->size;
+	max_bits = ft_max_bits(*a);
+	
+
+	while ((*b)->size)
+		push(a, b, 'a');*/
 }

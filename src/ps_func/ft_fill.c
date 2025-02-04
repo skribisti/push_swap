@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/30 20:50:30 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:15:11 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_first_min_val(t_stack *a)
 	int				min;
 	int				i;
 
-	el = (t_stack_node *)malloc(sizeof(t_stack_node));
+//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	min = el->val;
 	i = 0;
@@ -57,7 +57,7 @@ int	ft_first_max_val(t_stack *a)
 	int				max;
 	int				i;
 
-	el = (t_stack_node *)malloc(sizeof(t_stack_node));
+//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	max = el->val;
 	i = 0;
@@ -76,7 +76,7 @@ int	ft_min_val(t_stack *a, int prev)
 	int				min;
 	int				i;
 
-	el = (t_stack_node *)malloc(sizeof(t_stack_node));
+//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	min = ft_first_max_val(a);
 	if (a->size == 1)
@@ -97,8 +97,6 @@ int	ft_itob(int nb)
     int	bin;
     int	place;
 
-    if (nb == 0)
-        return (0);
     bin = 0;
     place = 1;
     while (nb > 0)
@@ -117,7 +115,6 @@ t_stack	*ft_ind(t_stack **a)
 	int				prev;
 	int				ind;
 
-	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = (*a)->first;
 	prev = ft_first_min_val(*a);
 	while (el->val != prev)
@@ -141,7 +138,7 @@ t_stack	*ft_bin_ind(t_stack **a)
 	t_stack_node	*el;
 	int				i;
 
-	el = (t_stack_node *)malloc(sizeof(t_stack_node));
+//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = (*a)->first;
 	i = 0;
 	while (i < (*a)->size)
@@ -152,33 +149,20 @@ t_stack	*ft_bin_ind(t_stack **a)
 	}
 	return (*a);
 }
-/*int	stack_len(t_stack *a)
-{
-	int	cpt;
-	t_stack_node	*el;
-
-	el = a->first;
-	cpt = 0;
-	while (el)
-	{
-		el = el->next;
-		cpt++;
-	}
-	return (cpt);
-}*/
 t_stack	*ft_fill(t_stack **stack, char **av)
 {
 	int				i;
 	t_stack_node	*el = NULL;
 	
 	(*stack) = malloc(sizeof(t_stack *));
+	if (!(*stack) || !av)
+        return (NULL);
 	if (!ft_avlen(av))
 	{
 		(*stack)->size = 0;
 		(*stack)->first = NULL;
+		return (*stack);
 	}
-	if (!(*stack) || !av || !ft_avlen(av))
-        return (NULL);
 	(*stack)->first = (t_stack_node *)malloc(sizeof(t_stack_node *));
 	el = (*stack)->first;
 	i = 0;
