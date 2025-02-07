@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/04 14:18:27 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:48:44 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_stack
 // Sorting algo :
 void	sort_small(t_stack **a, t_stack **b);
 void	ft_radix(t_stack **a, t_stack **b);
+int	stack_sorted(t_stack *a);
 
 // Ft_fill :
 int		ft_first_min_val(t_stack *a);
@@ -45,6 +46,7 @@ int		ft_min_val(t_stack *a, int prev);
 t_stack	*ft_ind(t_stack **a);
 t_stack	*ft_fill(t_stack **a, char **av);
 t_stack	*ft_recalc_ind(t_stack **stack);
+int	ft_itob(int nb);
 
 int		stack_len(t_stack *a);
 
