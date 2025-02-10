@@ -6,20 +6,20 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:02:43 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/07 11:49:00 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:13:41 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	ft_min_ind(t_stack *a, int prev)
+int	ft_min_ind(t_stack *a, int prev, int init_size)
 {
 	t_stack_node	*el;
 	int				min;
 	int				i;
 
 	el = a->first;
-	min = ft_itob(a->size - 1);
+	min = ft_itob(init_size - 1);
 	if (a->size == 1)
 		return (min);
 	i = 0;
@@ -33,14 +33,14 @@ int	ft_min_ind(t_stack *a, int prev)
 	return (min);
 }
 
-int	ft_get_distance(t_stack *a)
+int	ft_get_distance(t_stack *a, int init_size)
 {
 	t_stack_node	*el;	
 	int				min;
 	int				distance;
 
 	el = a->first;
-	min = ft_min_ind(a, -1);
+	min = ft_min_ind(a, -1, init_size);
 	distance = 0;
 	while (el->ind != min)
 	{
@@ -49,7 +49,7 @@ int	ft_get_distance(t_stack *a)
 	}
 	return (distance);
 }
-void	sort_three(t_stack **a)
+void	sort_three(t_stack **a, int init_size)
 {
 	t_stack_node	*el;
 	int				first_min;
@@ -58,8 +58,8 @@ void	sort_three(t_stack **a)
 	if ((*a)->size != 3)
 		return ;
 	el = (*a)->first;
-	first_min = ft_min_ind(*a, -1);
-	second_min = ft_min_ind(*a, first_min);
+	first_min = ft_min_ind(*a, -1, init_size);
+	second_min = ft_min_ind(*a, first_min, init_size);
 	if (el->ind == first_min)
 	{
 		if (el->next->next->ind == second_min) // 1 3 2
@@ -90,11 +90,11 @@ void	sort_three(t_stack **a)
 }
 
 
-void	sort_four(t_stack **a, t_stack **b)
+void	sort_four(t_stack **a, t_stack **b, int init_size)
 {
 	int				distance;
 
-	distance = ft_get_distance(*a);
+	distance = ft_get_distance(*a, init_size);
 	if (distance == 1)
 		rotate(a);
 	else if (distance == 2)
@@ -107,32 +107,50 @@ void	sort_four(t_stack **a, t_stack **b)
 	if (stack_sorted(*a))
 		return ;
 	push(a, b, 'b');
-	sort_three(a);
+	sort_three(a, init_size);
 	push(a, b, 'a');
 }
 
-void	sort_five(t_stack **a, t_stack **b)
+void	sort_five(t_stack **a, t_stack **b, int init_size)
 {
-	printf("%s", "sort 5");
-	rotate(a);
-	reverse_rotate(a);
-	rotate(b);
-	reverse_rotate(b);
+	int				distance;
+
+	distance = ft_get_distance(*a, init_size);
+	if (distance == 1)
+		rotate(a);
+	else if (distance == 2)
+	{
+		rotate(a);
+		rotate(a);
+	}
+	else if (distance == 3)
+	{
+		reverse_rotate(a);
+		reverse_rotate(a);
+	}
+	else if (distance == 4)
+		reverse_rotate(a);
+	if (stack_sorted(*a))
+		return ;
+	push(a, b, 'b');
+	sort_four(a, b, init_size);
+	push(a, b, 'a');
+	
 }
 
 void	sort_small(t_stack **a, t_stack **b)
 {
-	int	size;
+	int	initial_size;
 
-	size = (*a)->size;
-	if (size <= 1)
+	initial_size = (*a)->size;
+	if (initial_size <= 1)
 		return ;
-	if (size == 2)
+	if (initial_size == 2)
 		swap(a);
-	else if (size == 3)
-		sort_three(a);
-	else if (size == 4)
-		sort_four(a, b);
-	else if (size == 5)
-		sort_five(a,b);
+	else if (initial_size == 3)
+		sort_three(a, initial_size);
+	else if (initial_size == 4)
+		sort_four(a, b, initial_size);
+	else if (initial_size == 5)
+		sort_five(a,b, initial_size);
 }
