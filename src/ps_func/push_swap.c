@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/04 14:42:19 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:08:30 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int	ft_print_stack(t_stack *stack)
 {
 	t_stack_node	*el;
 
-	el = malloc(sizeof(t_stack_node *));
-	if (!el)
-		return (1);
 	printf("Stack :\n");
 	int	i = 0;
 	if (stack->size == 0)
@@ -101,7 +98,7 @@ int	push_swap(int ac, char **av)
 		return (0);
 	a = ft_fill(&a, av);
 	b = ft_fill(&b, ft_split("", ' '));
-	ft_print_stack(a);
+	//ft_print_stack(a);
 	if (!stack_sorted(a))
 	{
 		if (a->size <= 5)
@@ -109,7 +106,7 @@ int	push_swap(int ac, char **av)
 		else
 			ft_radix(&a, &b);
 	}
-	ft_print_stack(a);
+	//ft_print_stack(a);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:01:04 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/04 13:57:48 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:02:48 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	ft_max_bits(t_stack *a)
 void	ft_radix(t_stack **a, t_stack **b)
 {
 	printf("%s", "radix");
-	rotate(a);
-	reverse_rotate(a);
-	rotate(b);
-	reverse_rotate(b);
+	rotate(a, 'a');
+	reverse_rotate(a, 'a');
+	rotate(b, 'a');
+	reverse_rotate(b, 'a');
 	/*t_stack_node	*el;
 	int				size;
 	int				max_bits;

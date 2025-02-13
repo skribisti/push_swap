@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/04 14:15:11 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:07:46 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_first_min_val(t_stack *a)
 	int				min;
 	int				i;
 
-//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	min = el->val;
 	i = 0;
@@ -57,7 +56,6 @@ int	ft_first_max_val(t_stack *a)
 	int				max;
 	int				i;
 
-//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	max = el->val;
 	i = 0;
@@ -76,7 +74,6 @@ int	ft_min_val(t_stack *a, int prev)
 	int				min;
 	int				i;
 
-//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = a->first;
 	min = ft_first_max_val(a);
 	if (a->size == 1)
@@ -138,7 +135,6 @@ t_stack	*ft_bin_ind(t_stack **a)
 	t_stack_node	*el;
 	int				i;
 
-//	el = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = (*a)->first;
 	i = 0;
 	while (i < (*a)->size)
@@ -216,45 +212,4 @@ void	verif_instruction(char *instruc, t_stack **a, t_stack **b)
 		reverse_rotate(&b);
 	}
 
-}*/
-
-/*#include <unistd.h>
-int main()
-{
-	t_stack *a;
-	t_stack *b;
-	char **content_a;
-	char **content_b;
-
-	a = (t_stack *)malloc(sizeof(t_stack *));
-	b = (t_stack *)malloc(sizeof(t_stack *));
-	if (!a || !b)
-		return (1);
-	a->first = NULL;
-	b->first = NULL;
-
-	content_a = ft_split("0 1 2 3", ' '); 
-	content_b = ft_split("", ' ');
-	if (!content_a || !content_b) 
-    	return (printf("Error: ft_split failed\n"), 1);
-	a->size = ft_avlen(content_a);
-	b->size = ft_avlen(content_b);
-	if (a->size)
-		a = ft_fill(&a, content_a);
-	if (b->size)	
-		b = ft_fill(&b, content_b);
-
-	ft_print_stacks(a, b);
-
-	//swap(&a);
-	//rotate(&a);
-	//reverse_rotate(&a);
-
-	ft_print_stacks(a, b);
-
-	//char *instruction;
-	//instruction = get_next_line(STDIN_FILENO);
-	//verif_instruction(instruction);
-
-	return (0);
 }*/

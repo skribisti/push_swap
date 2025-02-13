@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:51:55 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 10:55:58 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:19:42 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	stack_len(t_stack *a)
 	int	cpt;
 	t_stack_node	*el;
 
-	el = malloc(sizeof(t_stack_node *));
 	el = a->first;
 	cpt = 0;
 	while (el)
