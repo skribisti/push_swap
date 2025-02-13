@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:52:36 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/13 10:01:50 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:04:13 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,12 @@ void *ft_atoi_int(char *str)
     res = 0;
     sign = 1;
     i = 0;
-    if (str[i] == '-')
+    if (str[i] == '-' || str[i] == '+')
 	{
-		sign = -1;
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-    else if (str[i] == '+')
-        i++;
     if (!ft_isdigit((unsigned char)str[i]))
         return (NULL);
     while (ft_isdigit((unsigned char)str[i]))
