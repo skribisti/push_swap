@@ -6,11 +6,12 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:52:36 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/13 09:22:36 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:01:50 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
 
 int	only_digits(char **av)
 {
@@ -60,40 +61,47 @@ int	find_dup(char **av)
 	}
 	return (1);
 }
+
 void *ft_atoi_int(char *str)
 {
-	int		res;
-	int		sign;
-	int		i;
-	int		next;
+    long res;
+    int sign;
+    int i;
 
-	i = 0;
-	sign = 1;
-	res = 0;
-	next = 0;
-	if (!ft_isdigit(str[i]))
-		return (0);
-	while (ft_isdigit(str[i]))
+    res = 0;
+    sign = 1;
+    i = 0;
+    if (str[i] == '-')
 	{
-		next = res * 10 + str[i] - '0';
-		if (next > 2147483647 || next <= -2147483648)
-			return (NULL);
-		res = next;
+		sign = -1;
 		i++;
 	}
-	return (res * sign);
+    else if (str[i] == '+')
+        i++;
+    if (!ft_isdigit((unsigned char)str[i]))
+        return (NULL);
+    while (ft_isdigit((unsigned char)str[i]))
+    {
+        int digit = str[i] - '0';
+        if (((sign == 1) && (res > (INT_MAX - digit) / 10))
+		|| ((sign == -1) && (res > (-(long)INT_MIN - digit) / 10)))
+            return (NULL); // Overflow
+        res = res * 10 + digit;
+        i++;
+    }
+    return (void *)(sign * res);
 }
 
 int	only_int(char **av)
 {
-	int	i;
-	int	nb;
+	int		i;
+	void	*nb;
 
 	i = 0;
 	while (av[i])
 	{
-		nb = ft_atoi(av[i]);
-		if (nb >= 2147483647 || nb <= -2147483647)
+		nb = ft_atoi_int(av[i]);
+		if (nb == NULL)
 			return (0);
 		i++;
 	}
