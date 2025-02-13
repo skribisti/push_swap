@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/12 12:56:35 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:35:02 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_stack	*ft_fill(t_stack **a, char **av);
 t_stack	*ft_recalc_ind(t_stack **stack);
 int	ft_itob(int nb);
 
+int	ft_strlen(char *str);
 int		stack_len(t_stack *a);
 
 // Atoi :

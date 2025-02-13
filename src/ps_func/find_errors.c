@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:52:36 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/13 10:04:13 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:33:42 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ void *ft_atoi_int(char *str)
     return (void *)(sign * res);
 }
 
+int		ft_iszero(char *str)
+{
+	if (ft_strlen(str) == 1 && str[0] == '0')
+		return (1);
+	return (0);
+}
+
 int	only_int(char **av)
 {
 	int		i;
@@ -100,7 +107,7 @@ int	only_int(char **av)
 	while (av[i])
 	{
 		nb = ft_atoi_int(av[i]);
-		if (nb == NULL)
+		if (!nb && !ft_iszero(av[i]))
 			return (0);
 		i++;
 	}

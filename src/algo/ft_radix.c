@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:01:04 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/12 13:02:48 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:28:11 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_max_bits(t_stack *a)
 	}
 	while (max)
 	{
-		max /= 2;
+		max /= 10;
 		max_bits++;
 	}
 	return (max_bits);
@@ -37,20 +37,27 @@ int	ft_max_bits(t_stack *a)
 
 void	ft_radix(t_stack **a, t_stack **b)
 {
-	printf("%s", "radix");
-	rotate(a, 'a');
-	reverse_rotate(a, 'a');
-	rotate(b, 'a');
-	reverse_rotate(b, 'a');
-	/*t_stack_node	*el;
 	int				size;
 	int				max_bits;
+	int				i;
+	int				j;
 
-	el = (*a)->first;
 	size = (*a)->size;
 	max_bits = ft_max_bits(*a);
-	
-
-	while ((*b)->size)
-		push(a, b, 'a');*/
+	i = 0;
+	while (i < max_bits)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if ((((*a)->first->ind >> i) & 1) == 1)
+				rotate(a, 'a');
+			else
+				push(a, b, 'b');
+			j++;
+		}
+		while ((*b)->size != 0)
+			push(a, b, 'a');
+		i++;
+	}
 }
