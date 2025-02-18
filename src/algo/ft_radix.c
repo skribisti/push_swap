@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:01:04 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/13 12:28:11 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:08:51 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,58 @@ int	ft_max_bits(t_stack *a)
 	return (max_bits);
 }
 
+int	is_one(int ind, int i)
+{
+	int	max_digits;
+	int	nb;
+	int	multiplicator;
+	int	res;
+
+	max_digits = 0;
+	nb = ind;
+	while (nb)
+	{
+		nb /= 10;
+		max_digits++;
+	}
+	if (max_digits < i)
+		return (0);
+	multiplicator = 1;
+	while (i)
+	{
+		multiplicator *= 10;
+		i--;
+	}
+	res = ind / multiplicator;
+	if (res % 10 == 0)
+		return(0);
+	return (1);
+}
+
 void	ft_radix(t_stack **a, t_stack **b)
 {
-	int				size;
-	int				max_bits;
+	t_stack_node	*el;
 	int				i;
 	int				j;
+	int				size;
+	int				max_bits;
 
+	i = 0;
+	el = (*a)->first;
 	size = (*a)->size;
 	max_bits = ft_max_bits(*a);
-	i = 0;
 	while (i < max_bits)
 	{
 		j = 0;
-		while (j < size)
+		while (j++ < size || (stack_sorted(*a) && !(*b)->size))
 		{
-			if ((((*a)->first->ind >> i) & 1) == 1)
+			el = (*a)->first;
+			if (is_one(el->ind, i))
 				rotate(a, 'a');
 			else
 				push(a, b, 'b');
-			j++;
 		}
-		while ((*b)->size != 0)
+		while ((*b)->size)
 			push(a, b, 'a');
 		i++;
 	}

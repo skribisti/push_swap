@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/13 09:07:46 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:08:36 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ t_stack	*ft_fill(t_stack **stack, char **av)
 	int				i;
 	t_stack_node	*el = NULL;
 	
-	(*stack) = malloc(sizeof(t_stack *));
+	(*stack) = malloc(sizeof(t_stack));
 	if (!(*stack) || !av)
         return (NULL);
 	if (!ft_avlen(av))
@@ -159,7 +159,7 @@ t_stack	*ft_fill(t_stack **stack, char **av)
 		(*stack)->first = NULL;
 		return (*stack);
 	}
-	(*stack)->first = (t_stack_node *)malloc(sizeof(t_stack_node *));
+	(*stack)->first = (t_stack_node *)malloc(sizeof(t_stack_node));
 	el = (*stack)->first;
 	i = 0;
 	while (i < ft_avlen(av))
@@ -167,7 +167,7 @@ t_stack	*ft_fill(t_stack **stack, char **av)
 		el->val = ft_atoi(av[i]);
 		if (i != ft_avlen(av) - 1)
 		{
-			el->next = (t_stack_node *)malloc(sizeof(t_stack_node *));
+			el->next = (t_stack_node *)malloc(sizeof(t_stack_node));
 			el = el->next;
 		}
 		i++;

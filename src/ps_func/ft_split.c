@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:53:32 by norabino          #+#    #+#             */
-/*   Updated: 2025/01/23 10:56:14 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/18 01:00:38 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,27 @@ void	ft_build_line(char *str, int *s, int *e, char *c)
 		(*e)++;
 }
 
-void	ft_free_dst(char ***dst, int *i)
+void	ft_free_dst(char **dst, int i)
 {
-	while ((*i)--)
-		free(*dst[*i]);
-	free(*dst);
+	if (!dst)
+		return ;
+	while (i--)
+	{
+		if (dst[i])
+			free(dst[i]);
+	}
+	free(dst);
+}
+void	ft_init_to_null(char **dst, int words)
+{
+	int	i;
+
+	i = 0;
+	while (i < words)
+	{
+		dst[i] = NULL;
+		i++;
+	}
 }
 
 char	**ft_split(char *str, char c)
@@ -79,6 +95,7 @@ char	**ft_split(char *str, char c)
 	dst = (char **)malloc(sizeof(char *) * (ft_countwords(str, (int)c) + 1));
 	if (!dst)
 		return (NULL);
+	ft_init_to_null(dst, ft_countwords(str, (int)c) + 1);
 	tab[2] = 0;
 	tab[0] = 0;
 	while (str[tab[0]] && tab[2] < ft_countwords(str, (int)c))
@@ -87,7 +104,7 @@ char	**ft_split(char *str, char c)
 		dst[tab[2]] = ft_strndup(str + tab[0], tab[1] - tab[0]);
 		if (dst[tab[2]] == NULL)
 		{
-			ft_free_dst(&dst, &tab[2]);
+			ft_free_dst(dst, tab[2]);
 			return (NULL);
 		}
 		tab[0] = tab[1];
@@ -96,3 +113,9 @@ char	**ft_split(char *str, char c)
 	dst[tab[2]] = 0;
 	return (dst);
 }
+/*
+ABREVIATIONS :
+tab[0] = start
+tab[1] = end
+tab[2] = i
+*/
