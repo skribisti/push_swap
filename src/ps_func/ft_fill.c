@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/18 15:08:36 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:34:43 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,15 +160,23 @@ t_stack	*ft_fill(t_stack **stack, char **av)
 		return (*stack);
 	}
 	(*stack)->first = (t_stack_node *)malloc(sizeof(t_stack_node));
+	if (!(*stack)->first)
+		return (free_stack(*stack), NULL);
 	el = (*stack)->first;
 	i = 0;
 	while (i < ft_avlen(av))
 	{
+		if (!av[i])
+			return (free_stack(*stack), NULL);
 		el->val = ft_atoi(av[i]);
+		el->ind = 0;
 		if (i != ft_avlen(av) - 1)
 		{
 			el->next = (t_stack_node *)malloc(sizeof(t_stack_node));
+			if (!el->next)
+				return (free_stack(*stack), NULL);
 			el = el->next;
+			el->ind = 0;
 		}
 		i++;
 	}

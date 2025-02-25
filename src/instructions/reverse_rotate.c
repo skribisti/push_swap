@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:54:58 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/12 12:57:56 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:44:05 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void reverse_rotate(t_stack **stack, char to_rr)
     last->next = (*stack)->first;
     (*stack)->first = last;
     if (to_rr == 'a')
-        printf("rra\n");
+        write(1, "rra\n", 4);
     if (to_rr == 'b')
-        printf("rrb\n");
+       write(1, "rrb\n", 4);
 }

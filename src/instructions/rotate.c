@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:40:27 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/12 13:03:00 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:44:20 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void rotate(t_stack **stack, char to_r)
     first->next = NULL;
     last->next = first;
     if (to_r == 'a')
-		printf("ra\n");
+		write(1, "ra\n", 3);
 	if (to_r == 'b')
-		printf("rb\n");
+		write(1, "rb\n", 3);
 }

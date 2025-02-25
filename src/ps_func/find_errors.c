@@ -6,12 +6,11 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:52:36 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/18 11:47:58 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:01:21 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
 
 int	only_digits(char **av)
 {
@@ -29,11 +28,10 @@ int	only_digits(char **av)
 			negative = 1;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]))
-			{
-				if (j && negative)
-					return (0);
-			}
+			if (((av[i][j] == '-') && ((j && negative) || j))
+			|| (av[i][j] =='-' && !(av[i][j + 1]))
+			|| ((!ft_isdigit(av[i][j])) && !(av[i][j] == '-')))
+				return (0);
 			j++;
 		}
 		i++;
@@ -83,7 +81,7 @@ void *ft_atoi_int(char *str)
     {
         int digit = str[i] - '0';
         if (((sign == 1) && (res > (INT_MAX - digit) / 10))
-		|| ((sign == -1) && (res > (-(long)INT_MIN - digit) / 10)))
+		|| ((sign == -1) && (-res < ((long)INT_MIN - digit) / 10)))
             return (NULL); // Overflow
         res = res * 10 + digit;
         i++;
@@ -93,7 +91,7 @@ void *ft_atoi_int(char *str)
 
 int		ft_iszero(char *str)
 {
-	if (ft_strlen(str) == 1 && str[0] == '0')
+	if (ft_strlen(str) == 1 && (str[0] == '0' || str[0] == 0))
 		return (1);
 	return (0);
 }
@@ -107,7 +105,7 @@ int	only_int(char **av)
 	while (av[i])
 	{
 		nb = ft_atoi_int(av[i]);
-		if (!nb && !ft_iszero(av[i]))
+		if (!nb && !ft_iszero(av[i]) && av[i])
 			return (0);
 		i++;
 	}
@@ -119,6 +117,9 @@ int	find_errors(char **av)
 	if (!only_digits(av) 
 	|| !find_dup(av)
 	|| !only_int(av))
-		return (printf("%s", "Error\n"), 1);
+	{
+		write(2, "Error\n", 7);
+		return (1);
+	}
 	return (0);
 }

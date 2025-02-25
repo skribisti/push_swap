@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:27:24 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/12 12:52:56 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:43:10 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	push_to_a(t_stack **a, t_stack **b)
 	to_push->next = temp;
 	(*b)->size -= 1;
 	(*a)->size += 1;
-	printf("pa\n");
+	write(1, "pa\n", 3);
 }
 
 void	push_to_b(t_stack **a, t_stack **b)
@@ -43,7 +43,7 @@ void	push_to_b(t_stack **a, t_stack **b)
 	to_push->next = temp;
 	(*a)->size -= 1;
 	(*b)->size += 1;
-	printf("pb\n");
+	write(1, "pb\n", 3);;
 }
 
 void	push(t_stack **a, t_stack **b, char push_to)

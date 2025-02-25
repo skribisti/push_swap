@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:48:21 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/18 15:20:16 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:18:59 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,6 @@ void	free_stack(t_stack *stack)
 	}
 	free(stack);
 }
-int	ft_print_stack(t_stack *stack)
-{
-	t_stack_node	*el;
-
-	printf("Stack :\n");
-	int	i = 0;
-	if (stack->size == 0)
-		printf("%s", "Pile vide.\n");
-	else
-	{
-		el = stack->first;
-		while (i < stack->size)
-		{
-			printf("Value : %d\nIndex : %d\n\n", el->val, el->ind);
-			i++;
-			el = el->next;
-		}
-	}
-	return (0);
-}
 
 char	**remove_first_arg(char **av)
 {
@@ -110,6 +90,8 @@ int	push_swap(int ac, char **av)
 		return(1);
 	if (ac == 2)
 	{
+		if (av[1][0] == ' ' || !av[1][0])
+			return (write(2, "Error\n", 7), 1);
 		new_av = ft_split(av[1], ' ');
 		splitted_av = 1;
 	}
@@ -122,7 +104,6 @@ int	push_swap(int ac, char **av)
 	content_b = ft_split("", ' ');
 	b = ft_fill(&b, content_b);
 	ft_free_dst(content_b, 0);
-	//ft_print_stack(a);
 	if (!stack_sorted(a))
 	{
 		if (a->size <= 5)
@@ -130,7 +111,6 @@ int	push_swap(int ac, char **av)
 		else
 			ft_radix(&a, &b);
 	}
-	//ft_print_stack(a);
 	free_stack(a);
 	free_stack(b);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:47:13 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/12 13:01:20 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:44:37 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	swap(t_stack **stack, char to_s)
 	second->next = second->next->next;
 	first->next = second;
 	if (to_s == 'a')
-		printf("sa\n");
+		write(1, "sa\n", 3);
 	if (to_s == 'b')
-		printf("sb\n");
+		write(1, "sb\n", 3);
 }

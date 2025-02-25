@@ -6,18 +6,17 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:31:31 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/18 11:43:58 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:49:09 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <limits.h>
 # include <stdlib.h>
-#include <stdio.h>
-//# include "../libft/libft.h"
-//# include "../printf/ft_printf.h"
+# include <unistd.h>
+# define INT_MAX 2147483647
+#define INT_MIN (-2147483648)
 
 typedef struct s_stack_node
 {
@@ -53,6 +52,7 @@ int		ft_itob(int nb);
 int	push_swap(int ac, char **av);
 int		ft_strlen(char *str);
 int		stack_len(t_stack *a);
+void	free_stack(t_stack *stack);
 
 // Atoi :
 int		ft_atoi(char *nptr);
