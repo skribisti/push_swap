@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 10:54:58 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/28 15:02:49 by norabino         ###   ########.fr       */
+/*   Created: 2025/02/28 15:05:12 by norabino          #+#    #+#             */
+/*   Updated: 2025/02/28 16:52:33 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-#include "../../includes/push_swap.h"
-
-void	reverse_rotate(t_stack **stack, char to_rr)
+void	ft_init_to_null(char **dst, int words)
 {
-	t_stack_node	*last;
-	t_stack_node	*prev;
+	int	i;
 
-	if ((*stack)->size < 2)
-		return ;
-	last = (*stack)->first;
-	prev = NULL;
-	while (last->next)
+	i = 0;
+	while (i < words)
 	{
-		prev = last;
-		last = last->next;
+		dst[i] = NULL;
+		i++;
 	}
-	prev->next = NULL;
-	last->next = (*stack)->first;
-	(*stack)->first = last;
-	if (to_rr == 'a')
-		write(1, "rra\n", 4);
-	if (to_rr == 'b')
-		write(1, "rrb\n", 4);
+}
+
+void	ft_free_dst(char **dst, int i)
+{
+	if (!dst)
+		return ;
+	while (i--)
+	{
+		if (dst[i])
+			free(dst[i]);
+	}
+	free(dst);
 }

@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:53:32 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/18 01:00:38 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:05:53 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,6 @@ void	ft_build_line(char *str, int *s, int *e, char *c)
 	*e = *s;
 	while (str[*e] != *c && str[*e])
 		(*e)++;
-}
-
-void	ft_free_dst(char **dst, int i)
-{
-	if (!dst)
-		return ;
-	while (i--)
-	{
-		if (dst[i])
-			free(dst[i]);
-	}
-	free(dst);
-}
-void	ft_init_to_null(char **dst, int words)
-{
-	int	i;
-
-	i = 0;
-	while (i < words)
-	{
-		dst[i] = NULL;
-		i++;
-	}
 }
 
 char	**ft_split(char *str, char c)

@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:01:04 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/18 15:08:51 by norabino         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:54:35 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	is_one(int ind, int i)
 	}
 	res = ind / multiplicator;
 	if (res % 10 == 0)
-		return(0);
+		return (0);
 	return (1);
 }
 

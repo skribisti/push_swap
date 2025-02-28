@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill_utils.c                                    :+:      :+:    :+:   */
+/*   find_errors_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 14:51:55 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/28 17:07:02 by norabino         ###   ########.fr       */
+/*   Created: 2025/02/28 17:18:31 by norabino          #+#    #+#             */
+/*   Updated: 2025/02/28 17:19:07 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	ft_isdigit(int c)
+long	ft_atol(char *str)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(char *nptr)
-{
-	int		res;
+	long	res;
 	int		sign;
 	int		i;
-	char	*str;
 
-	str = (char *)nptr;
-	i = 0;
-	sign = 1;
 	res = 0;
-	if (str[i] == '+' || str[i] == '-')
+	sign = 1;
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			sign = -sign;
+			sign = -1;
 		i++;
 	}
 	if (!ft_isdigit(str[i]))
@@ -43,37 +34,29 @@ int	ft_atoi(char *nptr)
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
-	return (res * sign);
+	return (sign * res);
 }
 
-int	stack_len(t_stack *a)
+int	ft_iszero(char *str)
 {
-	t_stack_node	*el;
-	int				cpt;
-
-	el = a->first;
-	cpt = 0;
-	while (el)
-	{
-		el = el->next;
-		cpt++;
-	}
-	free(el);
-	return (cpt);
+	if (ft_strlen(str) == 1 && (str[0] == '0' || str[0] == 0))
+		return (1);
+	return (0);
 }
 
-int	ft_itob(int nb)
+int	only_int(char **av)
 {
-	int	bin;
-	int	place;
+	int		i;
+	long	nb;
 
-	bin = 0;
-	place = 1;
-	while (nb > 0)
+	i = 0;
+	while (av[i])
 	{
-		bin += (nb % 2) * place;
-		nb /= 2;
-		place *= 10;
+		nb = ft_atol(av[i]);
+		if ((nb > 2147483647 || nb < -2147483648)
+			|| (!nb && !ft_iszero(av[i])))
+			return (0);
+		i++;
 	}
-	return (bin);
+	return (1);
 }
