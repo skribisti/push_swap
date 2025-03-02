@@ -6,7 +6,7 @@
 /*   By: norabino <norabino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:50:05 by norabino          #+#    #+#             */
-/*   Updated: 2025/02/28 17:25:04 by norabino         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:44:04 by norabino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_stack	**ft_fill_elems(t_stack **stack, char **av)
 		{
 			el->next = (t_stack_node *)malloc(sizeof(t_stack_node));
 			if (!el->next)
-				return (NULL);
+				return (free_stack(*stack), NULL);
 			el = el->next;
 		}
 		i++;
@@ -87,7 +87,7 @@ int	ft_check_av(t_stack **stack, char **av)
 {
 	(*stack) = malloc(sizeof(t_stack));
 	if (!(*stack) || !av)
-		return (-1);
+		return (free_stack(*stack), -1);
 	if (!ft_avlen(av))
 	{
 		(*stack)->first = NULL;
@@ -99,13 +99,16 @@ int	ft_check_av(t_stack **stack, char **av)
 
 t_stack	*ft_fill(t_stack **stack, char **av)
 {
-	if (ft_check_av(stack, av) == -1)
-		return (free_stack(*stack), NULL);
-	if (ft_check_av(stack, av) == 0)
+	int	check_av;
+
+	check_av = ft_check_av(stack, av);
+	if (check_av == -1)
+		return (NULL);
+	if (check_av == 0)
 		return (*stack);
 	stack = ft_fill_elems(stack, av);
 	if (!stack)
-		return (free_stack(*stack), NULL);
+		return (NULL);
 	(*stack)->size = stack_len(*stack);
 	*stack = ft_ind(stack);
 	*stack = ft_bin_ind(stack);
